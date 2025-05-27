@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bek Market - Mahalliy qo'l mehnati mahsulotlari</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#BB86FC',secondary:'#1E1E1E'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body {
+background-color: #121212;
+color: #FFFFFF;
+}
+@keyframes shake {
+0%, 100% { transform: translateX(0); }
+10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+.shake {
+animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+}
+.product-card {
+background-color: #1E1E1E;
+transition: transform 0.3s ease;
+}
+.product-card:hover {
+transform: translateY(-5px);
+}
+.badge-count {
+position: absolute;
+top: -5px;
+right: -5px;
+background-color: #CF6679;
+color: white;
+border-radius: 50%;
+width: 18px;
+height: 18px;
+font-size: 10px;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.tab-active {
+color: #BB86FC;
+border-bottom: 2px solid #BB86FC;
+}
+input, textarea {
+background-color: #1E1E1E;
+border: 1px solid #2D2D2D;
+color: white;
+}
+input:focus, textarea:focus {
+border-color: #BB86FC;
+outline: none;
+}
+input::placeholder, textarea::placeholder {
+color: #B3B3B3;
+}
+.toast {
+position: fixed;
+bottom: 80px;
+left: 50%;
+transform: translateX(-50%);
+background-color: #1E1E1E;
+color: white;
+padding: 12px 24px;
+border-radius: 8px;
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+z-index: 1000;
+opacity: 0;
+transition: opacity 0.3s ease;
+}
+.toast.show {
+opacity: 1;
+}
+</style>
+</head>
+<body class="bg-[#121212] text-white min-h-screen pb-16">
+<!-- Navigation Bar -->
+<nav class="fixed top-0 w-full bg-[#121212] z-50 border-b border-[#2D2D2D]">
+<div class="flex justify-between items-center p-4">
+<div class="h-8">
+<img src="https://static.readdy.ai/image/a83f84a413bd305f9bf88a24c73fc836/1814a004235472164d4c9afab26ed093.png" alt="Bek Market" class="h-full">
+</div>
+<div class="flex items-center space-x-4">
+<div class="relative w-8 h-8 flex items-center justify-center cursor-pointer" id="cartIcon">
+<i class="ri-shopping-cart-line ri-lg text-primary"></i>
+<span class="badge-count" id="cartCount">0</span>
+</div>
+<div class="w-8 h-8 flex items-center justify-center cursor-pointer" id="searchToggle">
+<i class="ri-search-line ri-lg"></i>
+</div>
+</div>
+</div>
+<div id="searchBar" class="hidden px-4 pb-4">
+<div class="relative">
+<input type="text" placeholder="Mahsulot qidirish..." class="w-full p-2 pr-10 rounded-button text-sm">
+<button class="absolute right-2 top-1/2 transform -translate-y-1/2 w-8 h-8 flex items-center justify-center">
+<i class="ri-search-line"></i>
+</button>
+</div>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="mt-20 px-4">
+<!-- Home Page Content -->
+<div id="homePage" class="page-content">
+<div class="mb-6">
+<div class="flex justify-between items-center mb-4">
+<h2 class="text-lg font-semibold">Mashhur mahsulotlar</h2>
+<a href="#" class="text-primary text-sm">Barchasini ko'rish</a>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="product-card rounded-lg overflow-hidden shadow-md cursor-pointer" data-id="1">
+<div class="h-32 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=handmade%20organic%20soap%20with%20lavender%20flowers%2C%20product%20photography%2C%20isolated%20on%20dark%20background%2C%20centered%20composition%2C%20high-quality%20details%2C%20soft%20lighting%2C%20no%20text%2C%20professional%20product%20shot&width=300&height=200&seq=1&orientation=landscape" alt="Lavanda sovun" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-3">
+<h3 class="font-medium text-sm truncate">Lavanda sovun</h3>
+<div class="flex justify-between items-center mt-2">
+<span class="text-primary font-semibold">25,000 so'm</span>
+<button class="add-to-cart w-8 h-8 flex items-center justify-center rounded-full bg-primary/10 text-primary" data-id="1">
+<i class="ri-add-line"></i>
+</button>
+</div>
+</div>
+</div>
+<div class="product-card rounded-lg overflow-hidden shadow-md cursor-pointer" data-id="2">
+<div class="h-32 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=handmade%20ceramic%20mug%20with%20blue%20pattern%2C%20product%20photography%2C%20isolated%20on%20dark%20background%2C%20centered%20composition%2C%20high-quality%20details%2C%20soft%20lighting%2C%20no%20text%2C%20professional%20product%20shot&width=300&height=200&seq=2&orientation=landscape" alt="Sopol piyola" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-3">
+<h3 class="font-medium text-sm truncate">Sopol piyola</h3>
+<div class="flex justify-between items-center mt-2">
+<span class="text-primary font-semibold">45,000 so'm</span>
+<button class="add-to-cart w-8 h-8 flex items-center justify-center rounded-full bg-primary/10 text-primary" data-id="2">
+<i class="ri-add-line"></i>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mb-6">
+<div class="flex justify-between items-center mb-4">
+<h2 class="text-lg font-semibold">Kategoriyalar</h2>
+</div>
+<div class="grid grid-cols-4 gap-3">
+<div class="category-item flex flex-col items-center cursor-pointer">
+<div class="w-16 h-16 rounded-full overflow-hidden bg-secondary flex items-center justify-center mb-2">
+<img src="https://readdy.ai/api/search-image?query=icon%2C%203D%20cartoon%2C%20handmade%20soap%2C%20the%20icon%20should%20take%20up%2070%25%20of%20the%20frame%2C%20vibrant%20colors%20with%20soft%20gradients%2C%20minimalist%20design%2C%20smooth%20rounded%20shapes%2C%20subtle%20shading%2C%20no%20outlines%2C%20centered%20composition%2C%20isolated%20on%20dark%20background%2C%20playful%20and%20friendly%20aesthetic%2C%20isometric%20perspective%2C%20high%20detail%20quality%2C%20clean%20and%20modern%20look%2C%20single%20object%20focus&width=100&height=100&seq=3&orientation=squarish" alt="Sovunlar" class="w-full h-full object-cover">
+</div>
+<span class="text-xs text-center whitespace-nowrap overflow-hidden text-overflow-ellipsis">Sovunlar</span>
+</div>
+<div class="category-item flex flex-col items-center cursor-pointer">
+<div class="w-16 h-16 rounded-full overflow-hidden bg-secondary flex items-center justify-center mb-2">
+<img src="https://readdy.ai/api/search-image?query=icon%2C%203D%20cartoon%2C%20ceramic%20pottery%2C%20the%20icon%20should%20take%20up%2070%25%20of%20the%20frame%2C%20vibrant%20colors%20with%20soft%20gradients%2C%20minimalist%20design%2C%20smooth%20rounded%20shapes%2C%20subtle%20shading%2C%20no%20outlines%2C%20centered%20composition%2C%20isolated%20on%20dark%20background%2C%20playful%20and%20friendly%20aesthetic%2C%20isometric%20perspective%2C%20high%20detail%20quality%2C%20clean%20and%20modern%20look%2C%20single%20object%20focus&width=100&height=100&seq=4&orientation=squarish" alt="Sopol buyumlar" class="w-full h-full object-cover">
+</div>
+<span class="text-xs text-center whitespace-nowrap overflow-hidden text-overflow-ellipsis">Sopol buyumlar</span>
+</div>
+<div class="category-item flex flex-col items-center cursor-pointer">
+<div class="w-16 h-16 rounded-full overflow-hidden bg-secondary flex items-center justify-center mb-2">
+<img src="https://readdy.ai/api/search-image?query=icon%2C%203D%20cartoon%2C%20handmade%20jewelry%2C%20the%20icon%20should%20take%20up%2070%25%20of%20the%20frame%2C%20vibrant%20colors%20with%20soft%20gradients%2C%20minimalist%20design%2C%20smooth%20rounded%20shapes%2C%20subtle%20shading%2C%20no%20outlines%2C%20centered%20composition%2C%20isolated%20on%20dark%20background%2C%20playful%20and%20friendly%20aesthetic%2C%20isometric%20perspective%2C%20high%20detail%20quality%2C%20clean%20and%20modern%20look%2C%20single%20object%20focus&width=100&height=100&seq=5&orientation=squarish" alt="Taqinchoqlar" class="w-full h-full object-cover">
+</div>
+<span class="text-xs text-center whitespace-nowrap overflow-hidden text-overflow-ellipsis">Taqinchoqlar</span>
+</div>
+<div class="category-item flex flex-col items-center cursor-pointer">
+<div class="w-16 h-16 rounded-full overflow-hidden bg-secondary flex items-center justify-center mb-2">
+<img src="https://readdy.ai/api/search-image?query=icon%2C%203D%20cartoon%2C%20handmade%20candle%2C%20the%20icon%20should%20take%20up%2070%25%20of%20the%20frame%2C%20vibrant%20colors%20with%20soft%20gradients%2C%20minimalist%20design%2C%20smooth%20rounded%20shapes%2C%20subtle%20shading%2C%20no%20outlines%2C%20centered%20composition%2C%20isolated%20on%20dark%20background%2C%20playful%20and%20friendly%20aesthetic%2C%20isometric%20perspective%2C%20high%20detail%20quality%2C%20clean%20and%20modern%20look%2C%20single%20object%20focus&width=100&height=100&seq=6&orientation=squarish" alt="Shamlar" class="w-full h-full object-cover">
+</div>
+<span class="text-xs text-center whitespace-nowrap overflow-hidden text-overflow-ellipsis">Shamlar</span>
+</div>
+</div>
+</div>
+<div class="mb-6">
+<div class="flex justify-between items-center mb-4">
+<h2 class="text-lg font-semibold">Yangi mahsulotlar</h2>
+<a href="#" class="text-primary text-sm">Barchasini ko'rish</a>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="product-card rounded-lg overflow-hidden shadow-md cursor-pointer" data-id="3">
+<div class="h-32 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=handmade%20wooden%20souvenir%20with%20uzbek%20ornament%2C%20product%20photography%2C%20isolated%20on%20dark%20background%2C%20centered%20composition%2C%20high-quality%20details%2C%20soft%20lighting%2C%20no%20text%2C%20professional%20product%20shot&width=300&height=200&seq=7&orientation=landscape" alt="Yog'och o'ymakor" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-3">
+<h3 class="font-medium text-sm truncate">Yog'och o'ymakor</h3>
+<div class="flex justify-between items-center mt-2">
+<span class="text-primary font-semibold">55,000 so'm</span>
+<button class="add-to-cart w-8 h-8 flex items-center justify-center rounded-full bg-primary/10 text-primary" data-id="3">
+<i class="ri-add-line"></i>
+</button>
+</div>
+</div>
+</div>
+<div class="product-card rounded-lg overflow-hidden shadow-md cursor-pointer" data-id="4">
+<div class="h-32 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=handmade%20scented%20candle%20in%20glass%20jar%2C%20product%20photography%2C%20isolated%20on%20dark%20background%2C%20centered%20composition%2C%20high-quality%20details%2C%20soft%20lighting%2C%20no%20text%2C%20professional%20product%20shot&width=300&height=200&seq=8&orientation=landscape" alt="Xushbo'y sham" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-3">
+<h3 class="font-medium text-sm truncate">Xushbo'y sham</h3>
+<div class="flex justify-between items-center mt-2">
+<span class="text-primary font-semibold">35,000 so'm</span>
+<button class="add-to-cart w-8 h-8 flex items-center justify-center rounded-full bg-primary/10 text-primary" data-id="4">
+<i class="ri-add-line"></i>
+</button>
+</div>
+</div>
+</div>
+<div class="product-card rounded-lg overflow-hidden shadow-md cursor-pointer" data-id="5">
+<div class="h-32 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=handmade%20leather%20wallet%20with%20embossed%20pattern%2C%20product%20photography%2C%20isolated%20on%20dark%20background%2C%20centered%20composition%2C%20high-quality%20details%2C%20soft%20lighting%2C%20no%20text%2C%20professional%20product%20shot&width=300&height=200&seq=9&orientation=landscape" alt="Charm hamyon" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-3">
+<h3 class="font-medium text-sm truncate">Charm hamyon</h3>
+<div class="flex justify-between items-center mt-2">
+<span class="text-primary font-semibold">75,000 so'm</span>
+<button class="add-to-cart w-8 h-8 flex items-center justify-center rounded-full bg-primary/10 text-primary" data-id="5">
+<i class="ri-add-line"></i>
+</button>
+</div>
+</div>
+</div>
+<div class="product-card rounded-lg overflow-hidden shadow-md cursor-pointer" data-id="6">
+<div class="h-32 overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=handmade%20knitted%20wool%20scarf%2C%20product%20photography%2C%20isolated%20on%20dark%20background%2C%20centered%20composition%2C%20high-quality%20details%2C%20soft%20lighting%2C%20no%20text%2C%20professional%20product%20shot&width=300&height=200&seq=10&orientation=landscape" alt="Jun sharf" class="w-full h-full object-cover object-top">
+</div>
+<div class="p-3">
+<h3 class="font-medium text-sm truncate">Jun sharf</h3>
+<div class="flex justify-between items-center mt-2">
+<span class="text-primary font-semibold">60,000 so'm</span>
+<button class="add-to-cart w-8 h-8 flex items-center justify-center rounded-full bg-primary/10 text-primary" data-id="6">
+<i class="ri-add-line"></i>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Product Detail Page -->
+<div id="productPage" class="page-content hidden">
+<div class="mb-4">
+<button id="backToHome" class="flex items-center text-sm text-gray-300">
+<i class="ri-arrow-left-line mr-1"></i> Orqaga
+</button>
+</div>
+<div class="product-detail">
+<div class="h-64 rounded-lg overflow-hidden mb-4 bg-secondary">
+<img id="productImage" src="" alt="" class="w-full h-full object-cover object-top">
+</div>
+<div class="bg-secondary rounded-lg p-4">
+<h1 id="productName" class="text-xl font-semibold mb-2"></h1>
+<div class="flex justify-between items-center mb-4">
+<span id="productPrice" class="text-primary text-xl font-bold"></span>
+<div class="flex items-center text-sm text-gray-300">
+<i class="ri-star-fill text-yellow-400 mr-1"></i>
+<span>4.8</span>
+<span class="mx-1">•</span>
+<span>120 baho</span>
+</div>
+</div>
+<div class="mb-4">
+<h2 class="text-sm font-medium mb-2 text-gray-300">Tavsif</h2>
+<p id="productDescription" class="text-sm text-gray-400"></p>
+</div>
+<div class="mb-4">
+<h2 class="text-sm font-medium mb-2 text-gray-300">Miqdor</h2>
+<div class="flex items-center">
+<button id="decreaseQuantity" class="w-8 h-8 flex items-center justify-center rounded-full border border-[#2D2D2D] text-gray-300">
+<i class="ri-subtract-line"></i>
+</button>
+<span id="quantityValue" class="mx-4">1</span>
+<button id="increaseQuantity" class="w-8 h-8 flex items-center justify-center rounded-full border border-[#2D2D2D] text-gray-300">
+<i class="ri-add-line"></i>
+</button>
+</div>
+</div>
+<button id="addToCartBtn" class="w-full py-3 bg-primary text-white font-medium rounded-button flex items-center justify-center">
+<i class="ri-shopping-cart-line mr-2"></i>
+Savatga qo'shish
+</button>
+</div>
+</div>
+</div>
+<!-- Cart Page -->
+<div id="cartPage" class="page-content hidden">
+<h1 class="text-xl font-semibold mb-4">Savatcha</h1>
+<div id="cartItems" class="mb-4">
+<!-- Cart items will be dynamically added here -->
+<div class="text-center text-gray-400 py-8 hidden" id="emptyCart">
+<i class="ri-shopping-cart-line ri-3x mb-2"></i>
+<p>Savatchangiz bo'sh</p>
+</div>
+</div>
+<div id="cartSummary" class="bg-secondary rounded-lg p-4 mb-4 hidden">
+<div class="flex justify-between mb-2">
+<span class="text-gray-300">Jami:</span>
+<span id="subtotal">0 so'm</span>
+</div>
+<div class="flex justify-between mb-4">
+<span class="text-gray-300">Yetkazib berish:</span>
+<span>15,000 so'm</span>
+</div>
+<div class="border-t border-[#2D2D2D] pt-3 mb-4">
+<div class="flex justify-between">
+<span>Umumiy summa:</span>
+<span id="total" class="text-primary font-bold">0 so'm</span>
+</div>
+</div>
+<button id="checkoutBtn" class="w-full py-3 bg-primary text-white font-medium rounded-button">
+Buyurtma berish
+</button>
+</div>
+</div>
+<!-- Contact Page -->
+<div id="contactPage" class="page-content hidden">
+<h1 class="text-xl font-semibold mb-4">Aloqa</h1>
+<div class="bg-secondary rounded-lg p-4 mb-6">
+<form id="contactForm">
+<div class="mb-4">
+<label for="name" class="block text-sm font-medium mb-2 text-gray-300">Ismingiz</label>
+<input type="text" id="name" class="w-full p-3 rounded-button border-none" placeholder="Ismingizni kiriting">
+</div>
+<div class="mb-4">
+<label for="phone" class="block text-sm font-medium mb-2 text-gray-300">Telefon raqamingiz</label>
+<input type="tel" id="phone" class="w-full p-3 rounded-button border-none" placeholder="+998 __ ___ __ __">
+</div>
+<div class="mb-4">
+<label for="message" class="block text-sm font-medium mb-2 text-gray-300">Xabaringiz</label>
+<textarea id="message" rows="4" class="w-full p-3 rounded-button border-none" placeholder="Xabaringizni kiriting"></textarea>
+</div>
+<button type="submit" class="w-full py-3 bg-primary text-white font-medium rounded-button">
+Yuborish
+</button>
+</form>
+</div>
+<div class="bg-secondary rounded-lg p-4">
+<h2 class="text-lg font-semibold mb-3">Bizning manzil</h2>
+<div class="mb-4">
+<div class="flex items-start mb-2">
+<div class="w-6 h-6 flex items-center justify-center mr-2 mt-1">
+<i class="ri-map-pin-line text-primary"></i>
+</div>
+<p class="text-sm text-gray-300">Toshkent shahri, Chilonzor tumani, Bunyodkor ko'chasi, 15-uy</p>
+</div>
+<div class="flex items-start mb-2">
+<div class="w-6 h-6 flex items-center justify-center mr-2 mt-1">
+<i class="ri-phone-line text-primary"></i>
+</div>
+<p class="text-sm text-gray-300">+998 90 123 45 67</p>
+</div>
+<div class="flex items-start">
+<div class="w-6 h-6 flex items-center justify-center mr-2 mt-1">
+<i class="ri-mail-line text-primary"></i>
+</div>
+<p class="text-sm text-gray-300">info@bekmarket.uz</p>
+</div>
+</div>
+<div class="h-40 rounded-lg overflow-hidden bg-[#1A1A1A]">
+<img src="https://public.readdy.ai/gen_page/map_placeholder_1280x720.png" alt="Xarita" class="w-full h-full object-cover">
+</div>
+</div>
+</div>
+<!-- Admin Page -->
+<div id="adminPage" class="page-content hidden">
+<div id="adminLogin" class="bg-secondary rounded-lg p-4 mb-4">
+<h1 class="text-xl font-semibold mb-4">Admin kirish</h1>
+<form id="loginForm">
+<div class="mb-4">
+<label for="username" class="block text-sm font-medium mb-2 text-gray-300">Login</label>
+<input type="text" id="username" class="w-full p-3 rounded-button border-none" placeholder="Login kiriting">
+</div>
+<div class="mb-4">
+<label for="password" class="block text-sm font-medium mb-2 text-gray-300">Parol</label>
+<input type="password" id="password" class="w-full p-3 rounded-button border-none" placeholder="Parol kiriting">
+</div>
+<button type="submit" class="w-full py-3 bg-primary text-white font-medium rounded-button">
+Kirish
+</button>
+</form>
+</div>
+<div id="adminPanel" class="hidden">
+<div class="flex justify-between items-center mb-4">
+<h1 class="text-xl font-semibold">Admin panel</h1>
+<button id="logoutBtn" class="text-sm text-gray-300">
+<i class="ri-logout-box-line mr-1"></i> Chiqish
+</button>
+</div>
+<div class="bg-secondary rounded-lg p-4 mb-4">
+<div class="flex justify-between items-center mb-4">
+<h2 class="text-lg font-medium">Mahsulotlar</h2>
+<button id="addProductBtn" class="px-3 py-2 bg-primary text-white text-sm rounded-button">
+<i class="ri-add-line mr-1"></i> Yangi mahsulot
+</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full">
+<thead>
+<tr class="border-b border-[#2D2D2D]">
+<th class="py-2 px-2 text-left text-sm font-medium text-gray-300">ID</th>
+<th class="py-2 px-2 text-left text-sm font-medium text-gray-300">Nomi</th>
+<th class="py-2 px-2 text-left text-sm font-medium text-gray-300">Narxi</th>
+<th class="py-2 px-2 text-right text-sm font-medium text-gray-300">Amallar</th>
+</tr>
+</thead>
+<tbody id="productsList">
+<tr class="border-b border-[#2D2D2D]">
+<td class="py-3 px-2 text-sm">1</td>
+<td class="py-3 px-2 text-sm">Lavanda sovun</td>
+<td class="py-3 px-2 text-sm">25,000 so'm</td>
+<td class="py-3 px-2 text-right">
+<button class="edit-product w-8 h-8 flex items-center justify-center text-gray-300 hover:text-primary" data-id="1">
+<i class="ri-edit-line"></i>
+</button>
+<button class="delete-product w-8 h-8 flex items-center justify-center text-gray-300 hover:text-[#CF6679]" data-id="1">
+<i class="ri-delete-bin-line"></i>
+</button>
+</td>
+</tr>
+<tr class="border-b border-[#2D2D2D]">
+<td class="py-3 px-2 text-sm">2</td>
+<td class="py-3 px-2 text-sm">Sopol piyola</td>
+<td class="py-3 px-2 text-sm">45,000 so'm</td>
+<td class="py-3 px-2 text-right">
+<button class="edit-product w-8 h-8 flex items-center justify-center text-gray-300 hover:text-primary" data-id="2">
+<i class="ri-edit-line"></i>
+</button>
+<button class="delete-product w-8 h-8 flex items-center justify-center text-gray-300 hover:text-[#CF6679]" data-id="2">
+<i class="ri-delete-bin-line"></i>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Product Modal -->
+<div id="productModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
+<div class="bg-[#1E1E1E] rounded-lg w-[90%] max-w-md">
+<div class="p-4 border-b border-[#2D2D2D] flex justify-between items-center">
+<h2 id="modalTitle" class="text-lg font-semibold">Yangi mahsulot qo'shish</h2>
+<button id="closeModal" class="w-8 h-8 flex items-center justify-center text-gray-300">
+<i class="ri-close-line ri-lg"></i>
+</button>
+</div>
+<div class="p-4">
+<form id="productForm">
+<div class="mb-4">
+<label for="productNameInput" class="block text-sm font-medium mb-2 text-gray-300">Mahsulot nomi</label>
+<input type="text" id="productNameInput" class="w-full p-3 rounded-button border-none" placeholder="Mahsulot nomini kiriting">
+</div>
+<div class="mb-4">
+<label for="productPriceInput" class="block text-sm font-medium mb-2 text-gray-300">Narxi</label>
+<input type="text" id="productPriceInput" class="w-full p-3 rounded-button border-none" placeholder="Narxini kiriting">
+</div>
+<div class="mb-4">
+<label for="productDescInput" class="block text-sm font-medium mb-2 text-gray-300">Tavsif</label>
+<textarea id="productDescInput" rows="3" class="w-full p-3 rounded-button border-none" placeholder="Mahsulot tavsifini kiriting"></textarea>
+</div>
+<div class="mb-4">
+<label for="productImageInput" class="block text-sm font-medium mb-2 text-gray-300">Rasm URL</label>
+<input type="text" id="productImageInput" class="w-full p-3 rounded-button border-none" placeholder="Rasm URL manzilini kiriting">
+</div>
+<button type="submit" class="w-full py-3 bg-primary text-white font-medium rounded-button">
+Saqlash
+</button>
+</form>
+</div>
+</div>
+</div>
+<!-- Toast Notification -->
+<div id="toast" class="toast">
+<div class="flex items-center">
+<i class="ri-check-line mr-2 text-primary"></i>
+<span id="toastMessage"></span>
+</div>
+</div>
+<!-- Tab Bar -->
+<div class="fixed bottom-0 w-full bg-[#121212] border-t border-[#2D2D2D] z-50">
+<div class="grid grid-cols-4 h-16">
+<button class="tab-btn flex flex-col items-center justify-center cursor-pointer" data-page="homePage">
+<i class="ri-home-line ri-lg"></i>
+<span class="text-xs mt-1">Bosh sahifa</span>
+</button>
+<button class="tab-btn flex flex-col items-center justify-center cursor-pointer" data-page="cartPage">
+<i class="ri-shopping-cart-line ri-lg"></i>
+<span class="text-xs mt-1">Savatcha</span>
+</button>
+<button class="tab-btn flex flex-col items-center justify-center cursor-pointer" data-page="contactPage">
+<i class="ri-phone-line ri-lg"></i>
+<span class="text-xs mt-1">Aloqa</span>
+</button>
+<button class="tab-btn flex flex-col items-center justify-center cursor-pointer" data-page="adminPage">
+<i class="ri-user-line ri-lg"></i>
+<span class="text-xs mt-1">Admin</span>
+</button>
+</div>
+</div>
+<script id="navigationScript">
+document.addEventListener('DOMContentLoaded', function() {
+// Navigation
+const tabButtons = document.querySelectorAll('.tab-btn');
+const pages = document.querySelectorAll('.page-content');
+function showPage(pageId) {
+pages.forEach(page => {
+page.classList.add('hidden');
+});
+document.getElementById(pageId).classList.remove('hidden');
+// Update active tab
+tabButtons.forEach(btn => {
+if (btn.dataset.page === pageId) {
+btn.classList.add('text-primary');
+} else {
+btn.classList.remove('text-primary');
+}
+});
+}
+tabButtons.forEach(btn => {
+btn.addEventListener('click', function() {
+showPage(this.dataset.page);
+});
+});
+// Set home page as default
+showPage('homePage');
+tabButtons[0].classList.add('text-primary');
+// Search toggle
+const searchToggle = document.getElementById('searchToggle');
+const searchBar = document.getElementById('searchBar');
+searchToggle.addEventListener('click', function() {
+searchBar.classList.toggle('hidden');
+});
+// Back button on product page
+document.getElementById('backToHome').addEventListener('click', function() {
+showPage('homePage');
+tabButtons[0].classList.add('text-primary');
+tabButtons.forEach((btn, index) => {
+if (index !== 0) btn.classList.remove('text-primary');
+});
+});
+// Cart icon click
+document.getElementById('cartIcon').addEventListener('click', function() {
+showPage('cartPage');
+tabButtons.forEach((btn, index) => {
+if (index === 1) {
+btn.classList.add('text-primary');
+} else {
+btn.classList.remove('text-primary');
+}
+});
+});
+});
+</script>
+<script id="productScript">
+document.addEventListener('DOMContentLoaded', function() {
+// Product data
+const products = [
+{
+id: 1,
+name: 'Lavanda sovun',
+price: 25000,
+image: 'https://readdy.ai/api/search-image?query=handmade%20organic%20soap%20with%20lavender%20flowers%2C%20product%20photography%2C%20isolated%20on%20dark%20background%2C%20centered%20composition%2C%20high-quality%20details%2C%20soft%20lighting%2C%20no%20text%2C%20professional%20product%20shot&width=300&height=200&seq=1&orientation=landscape',
+description: 'Tabiiy lavanda guli va efir moylari bilan tayyorlangan qo\'lbola sovun. Terini yumshatadi va yoqimli hid beradi. 100% organik tarkibga ega.'
+},
+{
+id: 2,
+name: 'Sopol piyola',
+price: 45000,
+image: 'https://readdy.ai/api/search-image?query=handmade%20ceramic%20mug%20with%20blue%20pattern%2C%20product%20photography%2C%20isolated%20on%20dark%20background%2C%20centered%20composition%2C%20high-quality%20details%2C%20soft%20lighting%2C%20no%20text%2C%20professional%20product%20shot&width=300&height=200&seq=2&orientation=landscape',
+description: 'An\'anaviy usulda tayyorlangan sopol piyola. Har bir piyola qo\'lda yasalgan va noyob naqshlar bilan bezatilgan. Choy va qahva uchun ideal.'
+},
+{
+id: 3,
+name: 'Yog\'och o\'ymakor',
+price: 55000,
+image: 'https://readdy.ai/api/search-image?query=handmade%20wooden%20souvenir%20with%20uzbek%20ornament%2C%20product%20photography%2C%20isolated%20on%20dark%20background%2C%20centered%20composition%2C%20high-quality%20details%2C%20soft%20lighting%2C%20no%20text%2C%20professional%20product%20shot&width=300&height=200&seq=7&orientation=landscape',
+description: 'Qattiq yog\'ochdan qo\'lda o\'yib ishlangan o\'zbek milliy naqshlari bilan bezatilgan suvenirlar. Uyingiz uchun ajoyib bezak va sovg\'a sifatida ham juda mos keladi.'
+},
+{
+id: 4,
+name: 'Xushbo\'y sham',
+price: 35000,
+image: 'https://readdy.ai/api/search-image?query=handmade%20scented%20candle%20in%20glass%20jar%2C%20product%20photography%2C%20isolated%20on%20dark%20background%2C%20centered%20composition%2C%20high-quality%20details%2C%20soft%20lighting%2C%20no%20text%2C%20professional%20product%20shot&width=300&height=200&seq=8&orientation=landscape',
+description: 'Tabiiy mumdan tayyorlangan xushbo\'y sham. Uzoq vaqt yonadi va xonaga yoqimli hid tarqatadi. Turli xil hidlar mavjud: vanil, lavanda, limon va boshqalar.'
+},
+{
+id: 5,
+name: 'Charm hamyon',
+price: 75000,
+image: 'https://readdy.ai/api/search-image?query=handmade%20leather%20wallet%20with%20embossed%20pattern%2C%20product%20photography%2C%20isolated%20on%20dark%20background%2C%20centered%20composition%2C%20high-quality%20details%2C%20soft%20lighting%2C%20no%20text%2C%20professional%20product%20shot&width=300&height=200&seq=9&orientation=landscape',
+description: 'Tabiiy charm teridan qo\'lda tikilgan hamyon. Chiroyli naqshlar bilan bezatilgan va uzoq muddat foydalanish uchun mo\'ljallangan. Bir necha bo\'limlar va cho\'ntaklar mavjud.'
+},
+{
+id: 6,
+name: 'Jun sharf',
+price: 60000,
+image: 'https://readdy.ai/api/search-image?query=handmade%20knitted%20wool%20scarf%2C%20product%20photography%2C%20isolated%20on%20dark%20background%2C%20centered%20composition%2C%20high-quality%20details%2C%20soft%20lighting%2C%20no%20text%2C%20professional%20product%20shot&width=300&height=200&seq=10&orientation=landscape',
+description: 'Yumshoq jun ipdan qo\'lda to\'qilgan sharf. Issiq va qulay, sovuq kunlar uchun ideal. Turli xil ranglar va naqshlar mavjud.'
+}
+];
+// Product detail page
+const productCards = document.querySelectorAll('.product-card');
+const productPage = document.getElementById('productPage');
+const productImage = document.getElementById('productImage');
+const productName = document.getElementById('productName');
+const productPrice = document.getElementById('productPrice');
+const productDescription = document.getElementById('productDescription');
+const quantityValue = document.getElementById('quantityValue');
+const decreaseQuantity = document.getElementById('decreaseQuantity');
+const increaseQuantity = document.getElementById('increaseQuantity');
+const addToCartBtn = document.getElementById('addToCartBtn');
+let currentProduct = null;
+let currentQuantity = 1;
+productCards.forEach(card => {
+card.addEventListener('click', function() {
+const productId = parseInt(this.dataset.id);
+currentProduct = products.find(p => p.id === productId);
+if (currentProduct) {
+productImage.src = currentProduct.image;
+productName.textContent = currentProduct.name;
+productPrice.textContent = formatPrice(currentProduct.price);
+productDescription.textContent = currentProduct.description;
+// Reset quantity
+currentQuantity = 1;
+quantityValue.textContent = currentQuantity;
+// Show product page
+document.querySelectorAll('.page-content').forEach(page => {
+page.classList.add('hidden');
+});
+productPage.classList.remove('hidden');
+// Update active tab (none active)
+document.querySelectorAll('.tab-btn').forEach(btn => {
+btn.classList.remove('text-primary');
+});
+}
+});
+});
+// Quantity controls
+decreaseQuantity.addEventListener('click', function() {
+if (currentQuantity > 1) {
+currentQuantity--;
+quantityValue.textContent = currentQuantity;
+}
+});
+increaseQuantity.addEventListener('click', function() {
+currentQuantity++;
+quantityValue.textContent = currentQuantity;
+});
+// Format price
+function formatPrice(price) {
+return price.toLocaleString() + ' so\'m';
+}
+});
+</script>
+<script id="cartScript">
+document.addEventListener('DOMContentLoaded', function() {
+// Cart functionality
+const cartItems = document.getElementById('cartItems');
+const cartCount = document.getElementById('cartCount');
+const emptyCart = document.getElementById('emptyCart');
+const cartSummary = document.getElementById('cartSummary');
+const subtotalEl = document.getElementById('subtotal');
+const totalEl = document.getElementById('total');
+const checkoutBtn = document.getElementById('checkoutBtn');
+const addToCartButtons = document.querySelectorAll('.add-to-cart');
+const addToCartBtn = document.getElementById('addToCartBtn');
+const toast = document.getElementById('toast');
+const toastMessage = document.getElementById('toastMessage');
+// Cart data
+let cart = [];
+// Product data (simplified version from productScript)
+const products = [
+{
+id: 1,
+name: 'Lavanda sovun',
+price: 25000,
+image: 'https://readdy.ai/api/search-image?query=handmade%20organic%20soap%20with%20lavender%20flowers%2C%20product%20photography%2C%20isolated%20on%20dark%20background%2C%20centered%20composition%2C%20high-quality%20details%2C%20soft%20lighting%2C%20no%20text%2C%20professional%20product%20shot&width=300&height=200&seq=1&orientation=landscape'
+},
+{
+id: 2,
+name: 'Sopol piyola',
+price: 45000,
+image: 'https://readdy.ai/api/search-image?query=handmade%20ceramic%20mug%20with%20blue%20pattern%2C%20product%20photography%2C%20isolated%20on%20dark%20background%2C%20centered%20composition%2C%20high-quality%20details%2C%20soft%20lighting%2C%20no%20text%2C%20professional%20product%20shot&width=300&height=200&seq=2&orientation=landscape'
+},
+{
+id: 3,
+name: 'Yog\'och o\'ymakor',
+price: 55000,
+image: 'https://readdy.ai/api/search-image?query=handmade%20wooden%20souvenir%20with%20uzbek%20ornament%2C%20product%20photography%2C%20isolated%20on%20dark%20background%2C%20centered%20composition%2C%20high-quality%20details%2C%20soft%20lighting%2C%20no%20text%2C%20professional%20product%20shot&width=300&height=200&seq=7&orientation=landscape'
+},
+{
+id: 4,
+name: 'Xushbo\'y sham',
+price: 35000,
+image: 'https://readdy.ai/api/search-image?query=handmade%20scented%20candle%20in%20glass%20jar%2C%20product%20photography%2C%20isolated%20on%20dark%20background%2C%20centered%20composition%2C%20high-quality%20details%2C%20soft%20lighting%2C%20no%20text%2C%20professional%20product%20shot&width=300&height=200&seq=8&orientation=landscape'
+},
+{
+id: 5,
+name: 'Charm hamyon',
+price: 75000,
+image: 'https://readdy.ai/api/search-image?query=handmade%20leather%20wallet%20with%20embossed%20pattern%2C%20product%20photography%2C%20isolated%20on%20dark%20background%2C%20centered%20composition%2C%20high-quality%20details%2C%20soft%20lighting%2C%20no%20text%2C%20professional%20product%20shot&width=300&height=200&seq=9&orientation=landscape'
+},
+{
+id: 6,
+name: 'Jun sharf',
+price: 60000,
+image: 'https://readdy.ai/api/search-image?query=handmade%20knitted%20wool%20scarf%2C%20product%20photography%2C%20isolated%20on%20dark%20background%2C%20centered%20composition%2C%20high-quality%20details%2C%20soft%20lighting%2C%20no%20text%2C%20professional%20product%20shot&width=300&height=200&seq=10&orientation=landscape'
+}
+];
+// Add to cart from product list
+addToCartButtons.forEach(button => {
+button.addEventListener('click', function(e) {
+e.stopPropagation(); // Prevent triggering product card click
+const productId = parseInt(this.dataset.id);
+addToCart(productId, 1);
+});
+});
+// Add to cart from product detail page
+addToCartBtn.addEventListener('click', function() {
+const productId = parseInt(document.querySelector('.product-detail').dataset.id);
+const quantity = parseInt(document.getElementById('quantityValue').textContent);
+addToCart(productId, quantity);
+// Show toast
+showToast('Mahsulot savatga qo\'shildi');
+// Go back to home page
+document.getElementById('backToHome').click();
+});
+// Add to cart function
+function addToCart(productId, quantity) {
+const product = products.find(p => p.id === productId);
+if (product) {
+// Check if product already in cart
+const existingItem = cart.find(item => item.id === productId);
+if (existingItem) {
+existingItem.quantity += quantity;
+} else {
+cart.push({
+id: product.id,
+name: product.name,
+price: product.price,
+image: product.image,
+quantity: quantity
+});
+}
+// Update cart UI
+updateCart();
+// Show toast
+showToast('Mahsulot savatga qo\'shildi');
+}
+}
+// Update cart UI
+function updateCart() {
+// Update cart count
+const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+cartCount.textContent = totalItems;
+// Clear cart items
+while (cartItems.firstChild && cartItems.firstChild !== emptyCart) {
+cartItems.removeChild(cartItems.firstChild);
+}
+// Show empty cart message if cart is empty
+if (cart.length === 0) {
+emptyCart.classList.remove('hidden');
+cartSummary.classList.add('hidden');
+return;
+}
+// Hide empty cart message and show summary
+emptyCart.classList.add('hidden');
+cartSummary.classList.remove('hidden');
+// Calculate subtotal
+const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+const deliveryFee = 15000;
+const total = subtotal + deliveryFee;
+// Update summary
+subtotalEl.textContent = formatPrice(subtotal);
+totalEl.textContent = formatPrice(total);
+// Add cart items
+cart.forEach(item => {
+const cartItem = document.createElement('div');
+cartItem.className = 'flex items-center p-3 mb-3 bg-secondary rounded-lg';
+cartItem.innerHTML = `
+<div class="w-16 h-16 rounded-lg overflow-hidden mr-3">
+<img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover object-top">
+</div>
+<div class="flex-1">
+<h3 class="font-medium text-sm mb-1">${item.name}</h3>
+<p class="text-primary text-sm font-semibold">${formatPrice(item.price)}</p>
+</div>
+<div class="flex items-center">
+<button class="decrease-cart-item w-8 h-8 flex items-center justify-center rounded-full border border-[#2D2D2D] text-gray-300" data-id="${item.id}">
+<i class="ri-subtract-line"></i>
+</button>
+<span class="mx-2">${item.quantity}</span>
+<button class="increase-cart-item w-8 h-8 flex items-center justify-center rounded-full border border-[#2D2D2D] text-gray-300" data-id="${item.id}">
+<i class="ri-add-line"></i>
+</button>
+<button class="remove-cart-item ml-3 w-8 h-8 flex items-center justify-center text-[#CF6679]" data-id="${item.id}">
+<i class="ri-delete-bin-line"></i>
+</button>
+</div>
+`;
+cartItems.insertBefore(cartItem, emptyCart);
+});
+// Add event listeners to cart item buttons
+document.querySelectorAll('.decrease-cart-item').forEach(button => {
+button.addEventListener('click', function() {
+const productId = parseInt(this.dataset.id);
+decreaseCartItem(productId);
+});
+});
+document.querySelectorAll('.increase-cart-item').forEach(button => {
+button.addEventListener('click', function() {
+const productId = parseInt(this.dataset.id);
+increaseCartItem(productId);
+});
+});
+document.querySelectorAll('.remove-cart-item').forEach(button => {
+button.addEventListener('click', function() {
+const productId = parseInt(this.dataset.id);
+removeCartItem(productId);
+});
+});
+}
+// Decrease cart item quantity
+function decreaseCartItem(productId) {
+const item = cart.find(item => item.id === productId);
+if (item) {
+if (item.quantity > 1) {
+item.quantity--;
+} else {
+removeCartItem(productId);
+return;
+}
+updateCart();
+}
+}
+// Increase cart item quantity
+function increaseCartItem(productId) {
+const item = cart.find(item => item.id === productId);
+if (item) {
+item.quantity++;
+updateCart();
+}
+}
+// Remove cart item
+function removeCartItem(productId) {
+cart = cart.filter(item => item.id !== productId);
+updateCart();
+showToast('Mahsulot savatdan olib tashlandi');
+}
+// Checkout button
+checkoutBtn.addEventListener('click', function() {
+showToast('Buyurtmangiz qabul qilindi!');
+cart = [];
+updateCart();
+});
+// Format price
+function formatPrice(price) {
+return price.toLocaleString() + ' so\'m';
+}
+// Show toast message
+function showToast(message) {
+toastMessage.textContent = message;
+toast.classList.add('show');
+setTimeout(() => {
+toast.classList.remove('show');
+}, 3000);
+// Add error shake animation if message indicates an error
+if (message.includes('noto\'g\'ri') || message.includes('kiriting')) {
+const loginForm = document.getElementById('loginForm');
+loginForm.classList.add('shake');
+setTimeout(() => {
+loginForm.classList.remove('shake');
+}, 500);
+}
+}
+// Initialize cart
+updateCart();
+});
+</script>
+<script id="contactScript">
+document.addEventListener('DOMContentLoaded', function() {
+// Contact form
+const contactForm = document.getElementById('contactForm');
+const toast = document.getElementById('toast');
+const toastMessage = document.getElementById('toastMessage');
+contactForm.addEventListener('submit', function(e) {
+e.preventDefault();
+const name = document.getElementById('name').value;
+const phone = document.getElementById('phone').value;
+const message = document.getElementById('message').value;
+// Validate form
+if (!name || !phone || !message) {
+showToast('Iltimos, barcha maydonlarni to\'ldiring');
+return;
+}
+// Send form (simulated)
+showToast('Xabaringiz yuborildi!');
+// Reset form
+contactForm.reset();
+});
+// Show toast message
+function showToast(message) {
+toastMessage.textContent = message;
+toast.classList.add('show');
+setTimeout(() => {
+toast.classList.remove('show');
+}, 3000);
+// Add error shake animation if message indicates an error
+if (message.includes('noto\'g\'ri') || message.includes('kiriting')) {
+const loginForm = document.getElementById('loginForm');
+loginForm.classList.add('shake');
+setTimeout(() => {
+loginForm.classList.remove('shake');
+}, 500);
+}
+}
+});
+</script>
+<script id="adminScript">
+document.addEventListener('DOMContentLoaded', function() {
+// Admin login
+const loginForm = document.getElementById('loginForm');
+const adminLogin = document.getElementById('adminLogin');
+const adminPanel = document.getElementById('adminPanel');
+const logoutBtn = document.getElementById('logoutBtn');
+const toast = document.getElementById('toast');
+const toastMessage = document.getElementById('toastMessage');
+// Product modal
+const addProductBtn = document.getElementById('addProductBtn');
+const productModal = document.getElementById('productModal');
+const closeModal = document.getElementById('closeModal');
+const productForm = document.getElementById('productForm');
+const modalTitle = document.getElementById('modalTitle');
+// Product list
+const productsList = document.getElementById('productsList');
+// Login form submit
+loginForm.addEventListener('submit', function(e) {
+e.preventDefault();
+const username = document.getElementById('username').value.trim();
+const password = document.getElementById('password').value.trim();
+if (!username || !password) {
+showToast('Iltimos, login va parolni kiriting');
+return;
+}
+// Simple validation (in real app, this would be a server request)
+if (username === 'admin' && password === 'admin') {
+adminLogin.classList.add('hidden');
+adminPanel.classList.remove('hidden');
+showToast('Admin panelga xush kelibsiz!');
+document.getElementById('username').value = '';
+document.getElementById('password').value = '';
+} else {
+showToast('Login yoki parol noto\'g\'ri');
+document.getElementById('password').value = '';
+}
+});
+// Logout button
+logoutBtn.addEventListener('click', function() {
+adminLogin.classList.remove('hidden');
+adminPanel.classList.add('hidden');
+loginForm.reset();
+});
+// Add product button
+addProductBtn.addEventListener('click', function() {
+modalTitle.textContent = 'Yangi mahsulot qo\'shish';
+productForm.reset();
+productForm.dataset.mode = 'add';
+productModal.classList.remove('hidden');
+});
+// Close modal
+closeModal.addEventListener('click', function() {
+productModal.classList.add('hidden');
+});
+// Click outside modal to close
+productModal.addEventListener('click', function(e) {
+if (e.target === productModal) {
+productModal.classList.add('hidden');
+}
+});
+// Edit product buttons
+document.querySelectorAll('.edit-product').forEach(button => {
+button.addEventListener('click', function() {
+const productId = parseInt(this.dataset.id);
+// In a real app, you would fetch the product data
+// For demo, we'll use dummy data
+const product = {
+id: productId,
+name: productId === 1 ? 'Lavanda sovun' : 'Sopol piyola',
+price: productId === 1 ? '25000' : '45000',
+description: 'Mahsulot tavsifi',
+image: 'https://example.com/image.jpg'
+};
+// Fill form
+document.getElementById('productNameInput').value = product.name;
+document.getElementById('productPriceInput').value = product.price;
+document.getElementById('productDescInput').value = product.description;
+document.getElementById('productImageInput').value = product.image;
+// Set form mode
+productForm.dataset.mode = 'edit';
+productForm.dataset.productId = productId;
+// Update modal title
+modalTitle.textContent = 'Mahsulotni tahrirlash';
+// Show modal
+productModal.classList.remove('hidden');
+});
+});
+// Delete product buttons
+document.querySelectorAll('.delete-product').forEach(button => {
+button.addEventListener('click', function() {
+const productId = parseInt(this.dataset.id);
+// In a real app, you would send a delete request to the server
+// For demo, we'll just show a toast
+showToast('Mahsulot o\'chirildi');
+// Remove product from list (in a real app, you would check the server response)
+const row = this.closest('tr');
+row.remove();
+});
+});
+// Product form submit
+productForm.addEventListener('submit', function(e) {
+e.preventDefault();
+const name = document.getElementById('productNameInput').value;
+const price = document.getElementById('productPriceInput').value;
+const description = document.getElementById('productDescInput').value;
+const image = document.getElementById('productImageInput').value;
+// Validate form
+if (!name || !price) {
+showToast('Iltimos, mahsulot nomi va narxini kiriting');
+return;
+}
+// In a real app, you would send the data to the server
+// For demo, we'll just show a toast
+if (productForm.dataset.mode === 'add') {
+showToast('Yangi mahsulot qo\'shildi');
+// Add product to list (in a real app, you would get the new ID from the server)
+const newId = Date.now();
+const row = document.createElement('tr');
+row.className = 'border-b border-[#2D2D2D]';
+row.innerHTML = `
+<td class="py-3 px-2 text-sm">${newId}</td>
+<td class="py-3 px-2 text-sm">${name}</td>
+<td class="py-3 px-2 text-sm">${price} so'm</td>
+<td class="py-3 px-2 text-right">
+<button class="edit-product w-8 h-8 flex items-center justify-center text-gray-300 hover:text-primary" data-id="${newId}">
+<i class="ri-edit-line"></i>
+</button>
+<button class="delete-product w-8 h-8 flex items-center justify-center text-gray-300 hover:text-[#CF6679]" data-id="${newId}">
+<i class="ri-delete-bin-line"></i>
+</button>
+</td>
+`;
+productsList.appendChild(row);
+} else {
+showToast('Mahsulot yangilandi');
+}
+// Close modal
+productModal.classList.add('hidden');
+});
+// Show toast message
+function showToast(message) {
+toastMessage.textContent = message;
+toast.classList.add('show');
+setTimeout(() => {
+toast.classList.remove('show');
+}, 3000);
+// Add error shake animation if message indicates an error
+if (message.includes('noto\'g\'ri') || message.includes('kiriting')) {
+const loginForm = document.getElementById('loginForm');
+loginForm.classList.add('shake');
+setTimeout(() => {
+loginForm.classList.remove('shake');
+}, 500);
+}
+}
+});
+</script>
+</body>
+</html>
